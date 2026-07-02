@@ -360,34 +360,6 @@ st.table(
 )
 
 # =========================
-# MODEL COMPARISON GRAPH
-# =========================
-
-# fig, ax = plt.subplots(figsize=(10, 5))
-
-# sorted_df = comparison_df.sort_values(
-#     by="R2 Score",
-#     ascending=False
-# )
-
-# ax.bar(
-#     sorted_df["Model"],
-#     sorted_df["R2 Score"]
-# )
-
-# ax.set_title(
-#     "Model Performance Comparison"
-# )
-
-# ax.set_ylabel(
-#     "R² Score"
-# )
-
-# plt.xticks(rotation=15)
-
-# st.pyplot(fig)
-
-# =========================
 # SELECTED SCENARIO
 # =========================
 
