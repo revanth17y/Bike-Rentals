@@ -1,14 +1,20 @@
 import pandas as pd
 import streamlit as st
-import joblib
-import matplotlib.pyplot as plt
 import traceback
+import matplotlib.pyplot as plt
+
+try:
+    import joblib
+except ImportError:
+    joblib = None
 
 
 def load_serialized_object(path):
+    if joblib is None:
+        return None, "joblib not installed"
     try:
         return joblib.load(path), None
-    except BaseException as exc:
+    except BaseException:
         return None, traceback.format_exc()
 
 
@@ -346,12 +352,11 @@ st.divider()
 
 st.subheader("📊 Model Comparison")
 
-st.dataframe(
+st.table(
     comparison_df.sort_values(
         by="R2 Score",
         ascending=False
-    ),
-    use_container_width=True
+    )
 )
 
 # =========================
@@ -411,7 +416,9 @@ scenario_df = pd.DataFrame({
     ]
 })
 
-st.dataframe(
-    scenario_df,
-    use_container_width=True
+# Ensure mixed-type columns display without Arrow conversion errors
+scenario_df["Value"] = scenario_df["Value"].astype(str)
+
+st.table(
+    scenario_df
 )
