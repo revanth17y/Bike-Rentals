@@ -1,7 +1,6 @@
 import pandas as pd
 import streamlit as st
 import traceback
-import matplotlib.pyplot as plt
 
 try:
     import joblib
